@@ -5,31 +5,44 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movimiento")]
-    public float walkSpeed = 3.5f;
-    public float runSpeed = 7f;
-    public float rotationSpeed = 10f;
-    public float jumpHeight = 1.5f;
-    public float gravity = -9.81f;
+    public float moveSpeed = 5f;
+    public float sprintSpeed = 8f;
+    public float rotationSmoothTime = 0.12f;
+    public float gravity = -19.62f;
 
-    [Header("Interacción")]
-    public float interactRange = 2.5f;
-    public LayerMask interactableLayer;
+    [Header("Grounding (evita que el personaje flote)")]
+    public float groundedOffset = 0.1f;
+    public float groundedRadius = 0.25f;
+    public LayerMask groundLayers;
 
-    [Header("Referencias")]
-    public Transform cameraTransform; // arrastrar la Main Camera / vcam aquí
+    [Header("Salto (opcional)")]
+    public bool allowJump = true;
+    public float jumpHeight = 1.2f;
+
+    [Header("Camara (controlada por Cinemachine)")]
+    [Tooltip("La Camera real de la escena (la que tiene el CinemachineBrain). Se usa solo para saber hacia donde mirar, Cinemachine la mueve solo.")]
+    public Transform cameraTransform;
+    public bool lockCursor = true;
+
+    [Header("Animacion")]
+    public float animationSmoothTime = 0.1f;
+    public float walkAnimSpeed = 0.5f;
+    public float runAnimSpeed = 1f;
 
     private CharacterController controller;
     private Animator animator;
 
-    private Vector3 velocity;
     private bool isGrounded;
-    private bool isRunning;
+    private float rotationVelocity;
+    private float verticalVelocity;
+    private const float terminalVelocity = -53f;
 
-    // Nombres de parámetros del Animator (deben coincidir con el Animator Controller)
+    private float currentAnimSpeed;
+    private float animVelocity;
+
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     private static readonly int JumpHash = Animator.StringToHash("Jump");
     private static readonly int AttackHash = Animator.StringToHash("Attack");
-    private static readonly int InteractHash = Animator.StringToHash("Interact");
 
     void Awake()
     {
@@ -40,94 +53,108 @@ public class PlayerController : MonoBehaviour
             cameraTransform = Camera.main.transform;
     }
 
+    void Start()
+    {
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
     void Update()
     {
-        HandleGroundCheck();
-        HandleMovement();
-        HandleJump();
+        GroundedCheck();
+        ApplyGravity();
+        Move();
         HandleAttack();
-        HandleInteract();
 
-        // Gravedad
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    void HandleGroundCheck()
-    {
-        isGrounded = controller.isGrounded;
-        if (isGrounded && velocity.y < 0)
-            velocity.y = -2f; // pequeño valor para mantenerlo pegado al suelo
-    }
-
-    void HandleMovement()
-    {
-        float h = Input.GetAxisRaw("Horizontal"); // A/D
-        float v = Input.GetAxisRaw("Vertical");   // W/S
-        isRunning = Input.GetKey(KeyCode.LeftShift);
-
-        Vector3 inputDir = new Vector3(h, 0f, v).normalized;
-
-        // El personaje SIEMPRE mira hacia donde mira la cámara (evita que la
-        // cámara "salte" al moverse hacia los costados o hacia atrás).
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.y = 0f;
-        camRight.y = 0f;
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Quaternion facingRotation = Quaternion.LookRotation(camForward, Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, facingRotation,
-                                               rotationSpeed * Time.deltaTime);
-
-        if (inputDir.magnitude >= 0.1f)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Movimiento tipo "strafe": adelante/atrás/lateral relativo a la cámara,
-            // sin importar hacia dónde gire el cuerpo.
-            Vector3 moveDir = (camForward * inputDir.z + camRight * inputDir.x).normalized;
-            float speed = isRunning ? runSpeed : walkSpeed;
-            controller.Move(moveDir * speed * Time.deltaTime);
-
-            animator.SetFloat(SpeedHash, isRunning ? 1f : 0.5f, 0.1f, Time.deltaTime);
-        }
-        else
-        {
-            animator.SetFloat(SpeedHash, 0f, 0.1f, Time.deltaTime);
+            bool willLock = Cursor.lockState != CursorLockMode.Locked;
+            Cursor.lockState = willLock ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !willLock;
         }
     }
 
-    void HandleJump()
+    private void GroundedCheck()
     {
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        Vector3 spherePosition = new Vector3(
+            transform.position.x,
+            transform.position.y + groundedOffset,
+            transform.position.z);
+
+        isGrounded = Physics.CheckSphere(
+            spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
+
+        if (isGrounded && verticalVelocity < 0f)
+            verticalVelocity = -2f;
+    }
+
+    private void ApplyGravity()
+    {
+        if (verticalVelocity > terminalVelocity)
+            verticalVelocity += gravity * Time.deltaTime;
+
+        if (isGrounded && allowJump && Input.GetButtonDown("Jump"))
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetTrigger(JumpHash);
         }
     }
 
-    void HandleAttack()
+    private void Move()
     {
-        if (Input.GetMouseButtonDown(0)) // Click izquierdo
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        bool sprint = Input.GetKey(KeyCode.LeftShift);
+
+        Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
+        float targetSpeed = sprint ? sprintSpeed : moveSpeed;
+
+        // Cinemachine ya esta moviendo/rotando la Camera real por su cuenta;
+        // aca solo LEEMOS su yaw actual para saber hacia donde es "adelante".
+        float cameraYaw = cameraTransform != null ? cameraTransform.eulerAngles.y : 0f;
+
+        float targetAnimSpeed = 0f;
+
+        if (inputDirection.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg
+                                 + cameraYaw;
+            float smoothAngle = Mathf.SmoothDampAngle(
+                transform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+
+            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(
+                moveDirection.normalized * targetSpeed * Time.deltaTime
+                + new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+
+            targetAnimSpeed = sprint ? runAnimSpeed : walkAnimSpeed;
+        }
+        else
+        {
+            controller.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        }
+
+        currentAnimSpeed = Mathf.SmoothDamp(currentAnimSpeed, targetAnimSpeed, ref animVelocity, animationSmoothTime);
+        animator.SetFloat(SpeedHash, currentAnimSpeed);
+    }
+
+    private void HandleAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger(AttackHash);
-            // Aquí podés agregar detección de colisión / daño con un Overlap o Raycast
         }
     }
 
-    void HandleInteract()
+    private void OnDrawGizmosSelected()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            animator.SetTrigger(InteractHash);
-
-            Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, interactableLayer);
-            if (hits.Length > 0)
-            {
-                // Ejemplo: cada objeto interactuable puede tener su propio script
-                // con un método Interact() que se llama aquí
-                hits[0].SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
-            }
-        }
+        Gizmos.color = isGrounded ? new Color(0, 1, 0, 0.4f) : new Color(1, 0, 0, 0.4f);
+        Vector3 spherePosition = new Vector3(
+            transform.position.x, transform.position.y + groundedOffset, transform.position.z);
+        Gizmos.DrawSphere(spherePosition, groundedRadius);
     }
 }
