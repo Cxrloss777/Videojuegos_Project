@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Administra el estado general del juego: contador de coleccionables,
 /// condición de victoria y condición de derrota.
@@ -26,6 +27,9 @@ public class GameManage : MonoBehaviour
     [Header("Sonidos de fin de partida")]
     [SerializeField] private AudioClip sonidoVictoria;
     [SerializeField] private AudioClip sonidoDerrota;
+
+    [Header("Transición de nivel")]
+    [SerializeField] private float retrasoAntesDeCambiarNivel = 3f;
 
     private AudioSource audioSource;
     private bool juegoTerminado = false;
@@ -91,6 +95,8 @@ public class GameManage : MonoBehaviour
         if (MusicManager.Instance != null) MusicManager.Instance.BajarVolumen();
 
         Time.timeScale = 0f; // Pausa el juego
+
+        StartCoroutine(CargarSiguienteNivel());
     }
 
     public void Derrota()
@@ -105,5 +111,23 @@ public class GameManage : MonoBehaviour
         if (MusicManager.Instance != null) MusicManager.Instance.BajarVolumen();
 
         Time.timeScale = 0f; // Pausa el juego
+    }
+
+    private System.Collections.IEnumerator CargarSiguienteNivel()
+    {
+        // WaitForSecondsRealtime porque Time.timeScale está en 0 (pausado)
+        yield return new WaitForSecondsRealtime(retrasoAntesDeCambiarNivel);
+
+        Time.timeScale = 1f; // restaurar antes de cambiar de escena
+        int siguienteIndice = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (siguienteIndice < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(siguienteIndice);
+        }
+        else
+        {
+            Debug.Log("No hay más niveles después de este en Build Settings.");
+        }
     }
 }
