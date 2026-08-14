@@ -6497,10 +6497,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8499879560893939875, guid: fb8d057869adb3245bfd694a5054b430, type: 3}
 <<<<<<< Updated upstream
+- target: {fileID: -8499879560893939875, guid: fb8d057869adb3245bfd694a5054b430, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -1263159464433539157, guid: fb8d057869adb3245bfd694a5054b430, type: 3}
     - target: {fileID: -8499879560893939875, guid: fb8d057869adb3245bfd694a5054b430, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a696764d392f0d4c8380b9cce6cb588, type: 2}
 =======
 >>>>>>> Stashed changes
       propertyPath: m_Materials.Array.data[0]
@@ -13333,7 +13337,7 @@ PrefabInstance:
     m_Modifications:
 <<<<<<< Updated upstream
 =======
-    - target: {fileID: 551976388206265303, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+- target: {fileID: 551976388206265303, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 32aad7d57b1a76a42aaa8453210299b1, type: 2}
@@ -13385,6 +13389,61 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -39.02
       objectReference: {fileID: 0}
+    - target: {fileID: 4588900987828633921, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_Name
+      value: Ciudad
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588900987828633921, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408149187610187388, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.9088
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408149187610187388, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -65.7191
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408149187610187388, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1669
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408149187610187388, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.0756
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586215810768786214, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_PreviewTimeScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586215810768786214, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586215810768786214, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586215810768786214, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586215810768786214, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075979162259467160, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6666668
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075979162259467160, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6666668
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075979162259467160, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100
 >>>>>>> Stashed changes
     - target: {fileID: 4588900987828633921, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
       propertyPath: m_Name
