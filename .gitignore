@@ -58,6 +58,6 @@ crashlytics-build.properties
 
 # OS generated files
 .DS_Store
-Thumbs.dbBuilds v2/
-Builds v2/.zip
+Thumbs.db
+Builds v2/
 Builds v2.zip

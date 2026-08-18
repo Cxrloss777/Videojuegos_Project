@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: aeab33f69c199e54794f516d31450ec4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: dcfabc83a03ba6e4a85c557543ed1f8d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -122,6 +122,82 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &108816908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108816909}
+  - component: {fileID: 108816911}
+  - component: {fileID: 108816910}
+  m_Layer: 5
+  m_Name: Panel_Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &108816909
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108816908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 260444119}
+  m_Father: {fileID: 890810548}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -700, y: 440}
+  m_SizeDelta: {x: 280, y: 130}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &108816910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108816908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b2ce45f897b018c439deba422ea54448, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &108816911
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108816908}
+  m_CullTransparentMesh: 1
 --- !u!1001 &150204629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +254,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -217,8 +297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -4, y: 0}
+  m_SizeDelta: {x: -8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &170479427
 MonoBehaviour:
@@ -233,15 +313,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0c536d2ee7e71464e8f1621e2aa5718e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -314,6 +394,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -479,16 +563,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260444118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 890810548}
+  m_Father: {fileID: 108816909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -781.8928, y: 458.86584}
+  m_AnchoredPosition: {x: 50, y: -5}
   m_SizeDelta: {x: 244.2143, y: 98.2684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260444120
@@ -909,7 +993,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1053,6 +1137,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 1.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1258,6 +1346,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1288,17 +1380,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570034480}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 680}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 890810548}
+  m_Father: {fileID: 1720037916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 700, y: 468.8606}
-  m_SizeDelta: {x: 500, y: 78.2787}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 450, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570034482
 MonoBehaviour:
@@ -1347,7 +1439,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.05
+  m_fontSize: 58.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1453,6 +1545,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1514,6 +1610,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1575,6 +1675,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1636,6 +1740,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1697,6 +1805,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2179,8 +2291,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 893871074}
-  - {fileID: 260444119}
-  - {fileID: 570034481}
+  - {fileID: 108816909}
+  - {fileID: 1720037916}
   - {fileID: 2071304258}
   - {fileID: 1967618478}
   - {fileID: 767254481}
@@ -2337,6 +2449,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2379,6 +2495,7 @@ MonoBehaviour:
   temporizador: {fileID: 1777639276}
   sonidoVictoria: {fileID: 8300000, guid: 8ad7a41e38749564b8cfe5229f9d1a35, type: 3}
   sonidoDerrota: {fileID: 8300000, guid: ecaeda58866493d4c81bfa90841c81ec, type: 3}
+  retrasoAntesDeCambiarNivel: 3
 --- !u!4 &941004256
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,6 +2668,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2604,6 +2725,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6960827917353936360, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960827917353936360, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960827917356361480, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2954963d08a0b044e8f84eece7126e53, type: 2}
     - target: {fileID: 7927646810518037825, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
       propertyPath: m_Name
       value: NPC_Drone_Centinela
@@ -2612,6 +2745,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2652,7 +2789,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164359002
 MonoBehaviour:
@@ -2667,15 +2804,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.07585368, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c8e73fbc9618f21488d9c6802963f70c, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2809,6 +2946,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2924,6 +3065,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2985,6 +3130,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3125,6 +3274,82 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: -0.000006556511, z: 0.0000009536743}
+--- !u!1 &1720037915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720037916}
+  - component: {fileID: 1720037918}
+  - component: {fileID: 1720037917}
+  m_Layer: 5
+  m_Name: Panel_Contador
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1720037916
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720037915}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -702}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 570034481}
+  m_Father: {fileID: 890810548}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 600, y: 468.8606}
+  m_SizeDelta: {x: 500, y: 90}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1720037917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720037915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 987948ed09c1ed546b69697299dbbbba, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1720037918
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720037915}
+  m_CullTransparentMesh: 1
 --- !u!1 &1723588560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3970,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3911,6 +4140,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4362,6 +4595,10 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 949035987}
+    - target: {fileID: 8673853914662048602, guid: 6c5d8bc8e5534f246baa6161e35e53b6, type: 3}
+      propertyPath: rangoAtaque
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
