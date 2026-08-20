@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Administra el estado general del juego: contador de coleccionables,
 /// condición de victoria y condición de derrota.
@@ -17,7 +18,7 @@ public class GameManage : MonoBehaviour
     private int coleccionablesRecogidos = 0;
 
     [Header("Referencias UI")]
-    [SerializeField] private TMP_Text textoContador;      // Cambiar a TMP_Text si se usa TextMeshPro
+    [SerializeField] private TMP_Text textoContador;
     [SerializeField] private GameObject panelVictoria;
     [SerializeField] private GameObject panelDerrota;
 
@@ -30,6 +31,10 @@ public class GameManage : MonoBehaviour
 
     [Header("Transición de nivel")]
     [SerializeField] private float retrasoAntesDeCambiarNivel = 3f;
+
+    [Header("Nombres de escenas (deben coincidir EXACTO con el nombre real y estar en Build Settings)")]
+    [SerializeField] private string nombreNivel1 = "Level 1";
+    [SerializeField] private string nombreNivel2 = "Level 2";
 
     private AudioSource audioSource;
     private bool juegoTerminado = false;
@@ -96,7 +101,19 @@ public class GameManage : MonoBehaviour
 
         Time.timeScale = 0f; // Pausa el juego
 
-        StartCoroutine(CargarSiguienteNivel());
+        string escenaActual = SceneManager.GetActiveScene().name;
+
+        if (escenaActual == nombreNivel1)
+        {
+            // Victoria en el nivel 1 -> pasa al nivel 2
+            StartCoroutine(CargarNivel(nombreNivel2));
+        }
+        else
+        {
+            // Victoria en el nivel 2 (último nivel) -> el juego termina aquí.
+            // Se queda mostrando el panel de Victoria, no carga ninguna escena más.
+            Debug.Log("¡Juego completado! Victoria final.");
+        }
     }
 
     public void Derrota()
@@ -111,23 +128,15 @@ public class GameManage : MonoBehaviour
         if (MusicManager.Instance != null) MusicManager.Instance.BajarVolumen();
 
         Time.timeScale = 0f; // Pausa el juego
+        // No cambia de escena en ningún caso: mismo comportamiento en Level 1 y Level 2.
     }
 
-    private System.Collections.IEnumerator CargarSiguienteNivel()
+    private System.Collections.IEnumerator CargarNivel(string nombreEscena)
     {
         // WaitForSecondsRealtime porque Time.timeScale está en 0 (pausado)
         yield return new WaitForSecondsRealtime(retrasoAntesDeCambiarNivel);
 
         Time.timeScale = 1f; // restaurar antes de cambiar de escena
-        int siguienteIndice = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (siguienteIndice < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(siguienteIndice);
-        }
-        else
-        {
-            Debug.Log("No hay más niveles después de este en Build Settings.");
-        }
+        SceneManager.LoadScene(nombreEscena);
     }
 }
