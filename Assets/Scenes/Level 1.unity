@@ -2779,12 +2779,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767254480}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 890810548}
+  m_Father: {fileID: 1723588561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3235,7 +3235,6 @@ RectTransform:
   - {fileID: 1720037916}
   - {fileID: 2071304258}
   - {fileID: 1967618478}
-  - {fileID: 767254481}
   - {fileID: 1723588561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3436,6 +3435,8 @@ MonoBehaviour:
   sonidoVictoria: {fileID: 8300000, guid: 8ad7a41e38749564b8cfe5229f9d1a35, type: 3}
   sonidoDerrota: {fileID: 8300000, guid: ecaeda58866493d4c81bfa90841c81ec, type: 3}
   retrasoAntesDeCambiarNivel: 3
+  nombreNivel1: Level 1
+  nombreNivel2: Level 2
 --- !u!4 &941004256
 Transform:
   m_ObjectHideFlags: 0
@@ -5210,6 +5211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723588561}
   - component: {fileID: 1723588562}
+  - component: {fileID: 1723588563}
   m_Layer: 5
   m_Name: Flecha
   m_TagString: Untagged
@@ -5228,7 +5230,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 767254481}
   m_Father: {fileID: 890810548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5253,13 +5256,21 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 1467016609}
   tagColeccionable: Coleccionable
   intervaloBusqueda: 0.3
+--- !u!222 &1723588563
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723588560}
+  m_CullTransparentMesh: 1
 --- !u!1 &1735410678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 232175017194352487, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
   m_PrefabInstance: {fileID: 1926409518}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1735410680
-BoxCollider:
+--- !u!64 &1735410684
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5276,9 +5287,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8.179433, y: 12.556832, z: 9.190286}
-  m_Center: {x: 0.14623292, y: 6.260053, z: 0.0000027509413}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 132c26c3fde290841a2c0b40a7739905, type: 3}
 --- !u!1 &1777639275
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,7 +5320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62a233c2057c84889e9a95e22e9919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoInicial: 100
+  tiempoInicial: 220
   textoTiempo: {fileID: 260444120}
 --- !u!4 &1777639277
 Transform:
@@ -5735,6 +5747,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8c883322e8d50a84bb9cc0720c7b6f90, type: 2}
+    - target: {fileID: 2113021483042239801, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113021483042239801, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -53.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113021483042239801, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113021483042239801, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3621623430578847266, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.58
@@ -5863,7 +5891,7 @@ PrefabInstance:
       addedObject: {fileID: 1250327743}
     - targetCorrespondingSourceObject: {fileID: 232175017194352487, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1735410680}
+      addedObject: {fileID: 1735410684}
     - targetCorrespondingSourceObject: {fileID: 7695398515696065961, guid: 86c503b864aa1444bb18df28d41766bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1461293146}
